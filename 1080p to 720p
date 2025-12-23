@@ -1,0 +1,6 @@
+mkdir -p 720p_videos
+
+for f in *.mp4 *.mkv *.mov; do
+  [ -e "$f" ] || continue
+  ffmpeg -i "$f" -vf scale=-2:720 -c:v libx264 -crf 18 -preset slow -c:a copy "720p_videos/$f"
+done
